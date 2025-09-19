@@ -25,9 +25,12 @@ body {
   display: grid;
   grid-template-columns: 
     [full-start] minmax(0, 1fr)
-    [main-start] minmax(0, 100%)
+    [main-start] 100%
     [main-end] minmax(0, 1fr)
     [full-end];
+}
+
+body {
   font-family: 'Poppins', sans-serif;
   background-color: var(--background-color);
   color: var(--text-color);
@@ -51,13 +54,19 @@ body {
 
 .page-content {
   grid-column: main-start / main-end;
-  width: 100%;
+  width: var(--page-width);
   margin: 0;
   padding: 0;
-  min-height: calc(100vh - 160px); /* Altezza totale - (header + footer) */
 }
 
-/* Animazione cuore */
+.page-content {
+  flex: 1;
+  width: auto;
+  min-height: calc(100vh - 160px); // Altezza totale - (header + footer)
+  padding: 0;
+}
+
+// Animazione cuore
 @keyframes heartbeat {
   0% {
     transform: scale(1);
@@ -81,14 +90,14 @@ body {
   color: var(--primary-color);
 }
 
-/* Media queries per il responsive design */
+// Media queries per il responsive design
 @media (max-width: 768px) {
   .container {
     padding: 0 1rem;
   }
 }
 
-/* Stili per le transizioni di pagina */
+// Stili per le transizioni di pagina
 .page-transition-enter {
   opacity: 0;
   transform: translateY(20px);
