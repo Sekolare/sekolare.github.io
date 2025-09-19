@@ -29,12 +29,8 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Deploy to main
-        run: |
-          cp -r dist/* .
-          rm -rf dist
-          git config --local user.email "actions@github.com"
-          git config --local user.name "GitHub Actions"
-          git add .
-          git commit -m "Deploy to main"
-          git push origin main
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
