@@ -74,17 +74,17 @@ export const Home = () => {
     // Nota: Sostituisci questi URL con le tue foto reali
     const photos = [
         {
-            url: primoIncontro,
+            url: 'src/assets/primoIn.jpg',
             title: 'Il Nostro Primo Incontro',
             text: 'Dal momento in cui i nostri occhi si sono incrociati, ho capito che saresti stata la luce della mia vita. Il tuo sorriso ha illuminato il mio mondo in un modo che non avrei mai immaginato possibile.',
         },
         {
-            url: momentiSpeciali,
+            url: 'src/assets/momSp.jpg',
             title: 'I Nostri Momenti Speciali',
             text: 'Ogni istante trascorso insieme è un tesoro prezioso. Il tuo amore rende ogni giorno più luminoso, ogni risata più dolce, ogni momento più significativo.',
         },
         {
-            url: futuroInsieme,
+            url: 'src/assets/futuro.png',
             title: 'Il Nostro Futuro Insieme',
             text: 'Guardando nei tuoi occhi, vedo il nostro futuro splendere luminoso. Sei il mio oggi, il mio domani e il mio per sempre.',
         },
