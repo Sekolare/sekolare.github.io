@@ -7,22 +7,23 @@ import futuroInsieme from '../assets/futuro.png';
 import { HeartBurst } from '../components/HeartBurst';
 
 const HomeContainer = styled.div`
-  width: 100%;
-  padding: 0;
+  width: 100vw;
+  max-width: 100vw;
+  padding: 0 2rem;
   margin: 0;
+  overflow-x: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
 
   .photo-section {
-    width: 100%;
-    max-width: 1400px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     margin: 4rem auto;
     gap: 3rem;
-    padding: 0 2rem;
+    width: 100%;
+    max-width: 100vw;
 
     @media (max-width: 768px) {
       flex-direction: column;
