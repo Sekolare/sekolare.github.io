@@ -5,6 +5,8 @@ import primoIncontro from '../assets/primoIn.jpg';
 import momentiSpeciali from '../assets/momSp.jpg';
 import futuroInsieme from '../assets/futuro.png';
 import { HeartBurst } from '../components/HeartBurst';
+import PageLoadHearts from '../components/PageLoadHearts';
+
 
 const HomeContainer = styled.div`
   grid-column: full-start / full-end;
@@ -165,6 +167,7 @@ export const Home = () => {
 
   return (
     <HomeContainer className="container">
+      <PageLoadHearts />
       {photos.map((photo, index) => (
         <motion.section
           key={index}

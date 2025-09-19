@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 import { motion } from 'framer-motion';
 import { FaHeart, FaStar, FaSun } from 'react-icons/fa';
+import PageLoadHearts from '../components/PageLoadHearts';
 
 
 const PageContainer = styled.div`
@@ -113,7 +114,7 @@ export const QuantoSeiImportante = () => {
                         <FaSun />
                     </IconContainer>
                 </ImportanceCard>
-
+                <PageLoadHearts />
                 <ImportanceCard variants={itemVariants}>
                     <h2>
                         <FaHeart />

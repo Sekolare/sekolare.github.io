@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 import { motion } from 'framer-motion';
 import { FaHeart, FaInfinity, FaGem } from 'react-icons/fa';
+import PageLoadHearts from '../components/PageLoadHearts';
 
 const PageContainer = styled.div`
   text-align: center;
@@ -99,7 +100,7 @@ export const CosaSignifichi = () => {
             >
                 Cosa Significhi Per Me <FaHeart />
             </Title>
-
+            <PageLoadHearts />
             <motion.div
                 variants={containerVariants}
                 initial="hidden"

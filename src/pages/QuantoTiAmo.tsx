@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 import { motion } from 'framer-motion';
 import { FaHeart } from 'react-icons/fa';
+import PageLoadHearts from '../components/PageLoadHearts';
 
 const PageContainer = styled.div`
   text-align: center;
@@ -66,7 +67,7 @@ export const QuantoTiAmo = () => {
       >
         Quanto ti amo <FaHeart />
       </Title>
-
+      <PageLoadHearts />
       <LoveSection
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
