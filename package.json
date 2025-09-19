@@ -10,7 +10,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "predeploy": "npm run build",
-    "deploy": "cp -r dist/* . && rm -rf dist && git add . && git commit -m \"Deploy to main\" && git push origin main"
+    "deploy": "gh-pages -d dist -b main"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
