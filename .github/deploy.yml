@@ -1,0 +1,50 @@
+name: Deploy to Production
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm ci --prefer-offline
+
+      - name: Build
+        run: npm run build
+
+      - name: Deploy
+        run: |
+          # Rimuove tutto tranne .git e .github
+          find . -maxdepth 1 ! -name '.' ! -name '.git' ! -name '.github' -exec rm -rf {} +
+          
+          # Copia i file di build
+          cp -r dist/* .
+          
+          # Pulizia finale
+          rm -rf dist
+          
+          # Configura git
+          git config --global user.email "actions@github.com"
+          git config --global user.name "GitHub Actions"
+          
+          # Aggiunge TUTTI i file (compresi quelli normalmente ignorati)
+          git add --all --force
+          
+          # Commit e push
+          git commit -m "🚀 Deploy: $(date +'%Y-%m-%d %H:%M:%S')" --allow-empty
+          git push origin main --force
