@@ -1,0 +1,85 @@
+:root {
+  --primary-color: #FF6B6B;
+  --secondary-color: #FFB6B9;
+  --accent-color: #FFF0F3;
+  --text-color: #2A2A2A;
+  --background-color: #FFF5F5;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.page-content {
+  min-height: calc(100vh - 160px); // Altezza totale - (header + footer)
+  padding: 2rem 0;
+}
+
+// Animazione cuore
+@keyframes heartbeat {
+  0% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(1.1);
+  }
+  50% {
+    transform: scale(1);
+  }
+  75% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.heart-icon {
+  animation: heartbeat 1.5s infinite;
+  color: var(--primary-color);
+}
+
+// Media queries per il responsive design
+@media (max-width: 768px) {
+  .container {
+    padding: 0 1rem;
+  }
+}
+
+// Stili per le transizioni di pagina
+.page-transition-enter {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.page-transition-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 300ms, transform 300ms;
+}
+
+.page-transition-exit {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.page-transition-exit-active {
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: opacity 300ms, transform 300ms;
+}
