@@ -6,6 +6,8 @@ import PageLoadHearts from '../components/PageLoadHearts';
 const PageContainer = styled.div`
   text-align: center;
   padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
 `;
 
 const Title = styled(motion.h1)`
@@ -16,6 +18,11 @@ const Title = styled(motion.h1)`
   align-items: center;
   justify-content: center;
   gap: 1rem;
+
+  @media (max-width: 768px) {
+    font-size: 2rem;
+    flex-direction: column;
+  }
 
   svg {
     animation: heartbeat 1.5s infinite;
@@ -44,22 +51,45 @@ const LoveSection = styled(motion.section)`
 
 const HeartGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-  gap: 1rem;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
   margin: 2rem 0;
+  justify-items: center;
+  padding: 0 1rem;
+
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(6, 1fr);
+  }
+
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+
+  @media (max-width: 480px) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.8rem;
+  }
 
   svg {
     font-size: 2rem;
     color: var(--primary-color);
     animation: heartbeat 1.5s infinite;
     animation-delay: calc(var(--i) * 0.2s);
+    
+    @media (max-width: 768px) {
+      font-size: 1.8rem;
+    }
+    
+    @media (max-width: 480px) {
+      font-size: 1.5rem;
+    }
   }
 `;
 
 export const QuantoTiAmo = () => {
   return (
     <PageContainer>
-
       <Title
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
