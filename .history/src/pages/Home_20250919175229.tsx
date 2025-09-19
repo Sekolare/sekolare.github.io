@@ -7,18 +7,20 @@ import futuroInsieme from '../assets/futuro.png';
 import { HeartBurst } from '../components/HeartBurst';
 
 const HomeContainer = styled.div`
-  grid-column: main-start / main-end;
-  width: var(--page-width);
-  display: grid;
-  grid-template-columns: inherit;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
   .photo-section {
-    grid-column: main-start / main-end;
-    width: var(--page-width);
+    width: 100%;
+    max-width: 1400px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin: 4rem 0;
+    margin: 4rem auto;
     gap: 3rem;
     padding: 0 2rem;
 

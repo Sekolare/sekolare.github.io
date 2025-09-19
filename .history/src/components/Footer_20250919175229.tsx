@@ -2,18 +2,20 @@ import styled from '@emotion/styled';
 import { FaHeart } from 'react-icons/fa';
 
 const FooterContainer = styled.footer`
-  grid-column: full-start / full-end;
   background-color: var(--primary-color);
   color: white;
   padding: 2rem 0;
   margin-top: auto;
-  display: grid;
-  grid-template-columns: inherit;
+  width: 100%;
+  position: relative;
+  left: 0;
+  right: 0;
 `;
 
 const FooterContent = styled.div`
-  grid-column: main-start / main-end;
-  width: var(--page-width);
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
   padding: 0 2rem;
   text-align: center;
   display: flex;

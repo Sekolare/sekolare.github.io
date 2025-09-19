@@ -4,32 +4,20 @@
   --accent-color: #FFF0F3;
   --text-color: #2A2A2A;
   --background-color: #FFF5F5;
-  --page-width: min(100%, 100vw);
 }
 
-*, *::before, *::after {
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-html {
-  overflow-x: hidden;
-  width: 100%;
-}
-
-body {
+html, body {
   margin: 0;
   padding: 0;
-  width: var(--page-width);
+  width: 100%;
   min-height: 100vh;
   overflow-x: hidden;
-  display: grid;
-  grid-template-columns: 
-    [full-start] minmax(0, 1fr)
-    [main-start] min(100%, 100vw)
-    [main-end] minmax(0, 1fr)
-    [full-end];
 }
 
 body {
@@ -41,24 +29,24 @@ body {
 }
 
 #root {
-  grid-column: full-start / full-end;
   min-height: 100vh;
-  display: grid;
-  grid-template-columns: inherit;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .app-container {
-  grid-column: full-start / full-end;
-  display: grid;
-  grid-template-columns: inherit;
-  min-height: 100vh;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  position: relative;
 }
 
 .page-content {
-  grid-column: main-start / main-end;
-  width: var(--page-width);
-  margin: 0;
-  padding: 0;
+  flex: 1;
+  width: 100%;
+  position: relative;
 }
 
 .page-content {

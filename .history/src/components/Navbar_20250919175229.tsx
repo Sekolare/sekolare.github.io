@@ -6,7 +6,6 @@ import { motion } from 'framer-motion';
 import { HeartExplosion } from './HeartExplosion';
 
 const Nav = styled(motion.nav)`
-  grid-column: full-start / full-end;
   background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
   padding: 1rem 0;
   box-shadow: 0 4px 15px rgba(255, 107, 107, 0.2);
@@ -14,16 +13,18 @@ const Nav = styled(motion.nav)`
   top: 0;
   z-index: 1000;
   backdrop-filter: blur(10px);
-  display: grid;
-  grid-template-columns: inherit;
+  width: 100%;
+  left: 0;
+  right: 0;
 `;
 
 const NavContainer = styled.div`
-  grid-column: main-start / main-end;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: var(--page-width);
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
   padding: 0 2rem;
 
   @media (max-width: 768px) {
