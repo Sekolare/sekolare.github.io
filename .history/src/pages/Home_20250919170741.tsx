@@ -104,8 +104,8 @@ const EnhancedPhotoFrame: React.FC<PhotoFrameProps> = ({ url, alt }) => {
       onClick={(e) => e.preventDefault()}
       onContextMenu={(e) => e.preventDefault()}
     >
-      <img
-        src={url}
+      <img 
+        src={url} 
         alt={alt}
         draggable={false}
         onDragStart={(e) => e.preventDefault()}

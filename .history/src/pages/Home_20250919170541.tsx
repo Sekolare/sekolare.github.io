@@ -84,14 +84,13 @@ const EnhancedPhotoFrame: React.FC<PhotoFrameProps> = ({ url, alt }) => {
   const [clickPosition, setClickPosition] = useState({ x: 0, y: 0 });
 
   const handleInteraction = (event: React.MouseEvent | React.TouchEvent) => {
-    event.preventDefault();
-    const rect = (event.currentTarget as HTMLElement).getBoundingClientRect();
+    // La posizione del click verrà usata come punto di origine dell'esplosione
     const x = ('touches' in event)
-      ? event.touches[0].clientX - rect.left
-      : (event as React.MouseEvent).clientX - rect.left;
+      ? event.touches[0].clientX
+      : (event as React.MouseEvent).clientX;
     const y = ('touches' in event)
-      ? event.touches[0].clientY - rect.top
-      : (event as React.MouseEvent).clientY - rect.top;
+      ? event.touches[0].clientY
+      : (event as React.MouseEvent).clientY;
 
     setClickPosition({ x, y });
     setIsExploding(true);
@@ -101,15 +100,8 @@ const EnhancedPhotoFrame: React.FC<PhotoFrameProps> = ({ url, alt }) => {
     <PhotoFrame
       onMouseDown={handleInteraction}
       onTouchStart={handleInteraction}
-      onClick={(e) => e.preventDefault()}
-      onContextMenu={(e) => e.preventDefault()}
     >
-      <img
-        src={url}
-        alt={alt}
-        draggable={false}
-        onDragStart={(e) => e.preventDefault()}
-      />
+      <img src={url} alt={alt} />
       <HeartBurst
         isActive={isExploding}
         onComplete={() => setIsExploding(false)}
