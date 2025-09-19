@@ -1,9 +1,8 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import styled from '@emotion/styled';
 import { FaHeart } from 'react-icons/fa';
-import { motion } from 'framer-motion';
-import { HeartExplosion } from './HeartExplosion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const Nav = styled(motion.nav)`
   background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
@@ -77,19 +76,35 @@ const NavLinks = styled.div<{ isOpen: boolean }>`
   }
 `;
 
-
-
 const NavLink = styled(motion(Link))`
   color: white;
   text-decoration: none;
   font-weight: 500;
+  transition: all 0.3s ease;
   padding: 0.5rem 1rem;
   border-radius: 20px;
   position: relative;
-  overflow: visible;
+  overflow: hidden;
+
+  &::before {
+    content: '♥';
+    position: absolute;
+    top: -100%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.2rem;
+    transition: top 0.3s ease;
+    color: var(--accent-color);
+  }
 
   &:hover {
     background: rgba(255, 255, 255, 0.1);
+    transform: translateY(2px);
+    
+    &::before {
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
   }
 
   &.active {
@@ -120,7 +135,7 @@ export const Navbar = () => {
 
     const navVariants = {
         initial: { y: -100 },
-        animate: {
+        animate: { 
             y: 0,
             transition: {
                 type: "spring" as const,
@@ -132,12 +147,12 @@ export const Navbar = () => {
 
     return (
         <Nav
-            initial="initial"
-            animate="animate"
+            initial="hidden"
+            animate="visible"
             variants={navVariants}
         >
             <NavContainer>
-                <Logo
+                <Logo 
                     to="/"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
@@ -148,34 +163,42 @@ export const Navbar = () => {
                     ☰
                 </MenuButton>
                 <NavLinks isOpen={isOpen}>
-                    {[
-                        { to: "/quanto-ti-amo", text: "Quanto Ti Amo" },
-                        { to: "/quanto-sei-importante", text: "Quanto Sei Importante" },
-                        { to: "/cosa-significhi", text: "Cosa Significhi Per Me" }
-                    ].map((link) => {
-                        const [isHovered, setIsHovered] = useState(false);
-                        return (
-                            <NavLink
-                                key={link.to}
-                                to={link.to}
-                                className={location.pathname === link.to ? "active" : ""}
-                                onMouseEnter={() => setIsHovered(true)}
-                                onMouseLeave={() => setIsHovered(false)}
-                                whileHover={{
-                                    scale: 1.05,
-                                    transition: {
-                                        type: "spring" as const,
-                                        stiffness: 300,
-                                        damping: 10
-                                    }
-                                }}
-                                whileTap={{ scale: 0.95 }}
-                            >
-                                {link.text}
-                                <HeartExplosion isHovered={isHovered} />
-                            </NavLink>
-                        );
-                    })}
+                    <NavLink 
+                        to="/"
+                        className={location.pathname === "/" ? "active" : ""}
+                        variants={linkVariants}
+                        whileHover="hover"
+                        whileTap="tap"
+                    >
+                        Home
+                    </NavLink>
+                    <NavLink 
+                        to="/quanto-ti-amo"
+                        className={location.pathname === "/quanto-ti-amo" ? "active" : ""}
+                        variants={linkVariants}
+                        whileHover="hover"
+                        whileTap="tap"
+                    >
+                        Quanto Ti Amo
+                    </NavLink>
+                    <NavLink 
+                        to="/quanto-sei-importante"
+                        className={location.pathname === "/quanto-sei-importante" ? "active" : ""}
+                        variants={linkVariants}
+                        whileHover="hover"
+                        whileTap="tap"
+                    >
+                        Quanto Sei Importante
+                    </NavLink>
+                    <NavLink 
+                        to="/cosa-significhi"
+                        className={location.pathname === "/cosa-significhi" ? "active" : ""}
+                        variants={linkVariants}
+                        whileHover="hover"
+                        whileTap="tap"
+                    >
+                        Cosa Significhi Per Me
+                    </NavLink>
                 </NavLinks>
             </NavContainer>
         </Nav>

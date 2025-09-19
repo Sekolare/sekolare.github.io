@@ -176,6 +176,36 @@ export const Navbar = () => {
                             </NavLink>
                         );
                     })}
+                    <NavLink
+                        to="/quanto-sei-importante"
+                        className={location.pathname === "/quanto-sei-importante" ? "active" : ""}
+                        whileHover={{
+                            scale: 1.1,
+                            transition: {
+                                type: "spring" as const,
+                                stiffness: 300,
+                                damping: 10
+                            }
+                        }}
+                        whileTap={{ scale: 0.95 }}
+                    >
+                        Quanto Sei Importante
+                    </NavLink>
+                    <NavLink
+                        to="/cosa-significhi"
+                        className={location.pathname === "/cosa-significhi" ? "active" : ""}
+                        whileHover={{
+                            scale: 1.1,
+                            transition: {
+                                type: "spring" as const,
+                                stiffness: 300,
+                                damping: 10
+                            }
+                        }}
+                        whileTap={{ scale: 0.95 }}
+                    >
+                        Cosa Significhi Per Me
+                    </NavLink>
                 </NavLinks>
             </NavContainer>
         </Nav>

@@ -77,7 +77,21 @@ const NavLinks = styled.div<{ isOpen: boolean }>`
   }
 `;
 
+const HeartParticle = styled(motion.span)`
+  position: absolute;
+  pointer-events: none;
+  opacity: 0;
+  color: var(--accent-color);
+  font-size: 0.8rem;
+`;
 
+const StarParticle = styled(motion.span)`
+  position: absolute;
+  pointer-events: none;
+  opacity: 0;
+  color: #FFD700;
+  font-size: 0.6rem;
+`;
 
 const NavLink = styled(motion(Link))`
   color: white;
@@ -148,34 +162,51 @@ export const Navbar = () => {
                     ☰
                 </MenuButton>
                 <NavLinks isOpen={isOpen}>
-                    {[
-                        { to: "/quanto-ti-amo", text: "Quanto Ti Amo" },
-                        { to: "/quanto-sei-importante", text: "Quanto Sei Importante" },
-                        { to: "/cosa-significhi", text: "Cosa Significhi Per Me" }
-                    ].map((link) => {
-                        const [isHovered, setIsHovered] = useState(false);
-                        return (
-                            <NavLink
-                                key={link.to}
-                                to={link.to}
-                                className={location.pathname === link.to ? "active" : ""}
-                                onMouseEnter={() => setIsHovered(true)}
-                                onMouseLeave={() => setIsHovered(false)}
-                                whileHover={{
-                                    scale: 1.05,
-                                    transition: {
-                                        type: "spring" as const,
-                                        stiffness: 300,
-                                        damping: 10
-                                    }
-                                }}
-                                whileTap={{ scale: 0.95 }}
-                            >
-                                {link.text}
-                                <HeartExplosion isHovered={isHovered} />
-                            </NavLink>
-                        );
-                    })}
+                    <NavLink
+                        to="/quanto-ti-amo"
+                        className={location.pathname === "/quanto-ti-amo" ? "active" : ""}
+                        whileHover={{
+                            scale: 1.1,
+                            transition: {
+                                type: "spring" as const,
+                                stiffness: 300,
+                                damping: 10
+                            }
+                        }}
+                        whileTap={{ scale: 0.95 }}
+                    >
+                        Quanto Ti Amo
+                    </NavLink>
+                    <NavLink
+                        to="/quanto-sei-importante"
+                        className={location.pathname === "/quanto-sei-importante" ? "active" : ""}
+                        whileHover={{
+                            scale: 1.1,
+                            transition: {
+                                type: "spring" as const,
+                                stiffness: 300,
+                                damping: 10
+                            }
+                        }}
+                        whileTap={{ scale: 0.95 }}
+                    >
+                        Quanto Sei Importante
+                    </NavLink>
+                    <NavLink
+                        to="/cosa-significhi"
+                        className={location.pathname === "/cosa-significhi" ? "active" : ""}
+                        whileHover={{
+                            scale: 1.1,
+                            transition: {
+                                type: "spring" as const,
+                                stiffness: 300,
+                                damping: 10
+                            }
+                        }}
+                        whileTap={{ scale: 0.95 }}
+                    >
+                        Cosa Significhi Per Me
+                    </NavLink>
                 </NavLinks>
             </NavContainer>
         </Nav>

@@ -1,0 +1,127 @@
+import { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import styled from '@emotion/styled';
+import { FaHeart } from 'react-icons/fa';
+import { motion, AnimatePresence } from 'framer-motion';
+
+const Nav = styled(motion.nav)`
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  padding: 1rem 0;
+  box-shadow: 0 4px 15px rgba(255, 107, 107, 0.2);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  backdrop-filter: blur(10px);
+`;
+
+const NavContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    padding: 0 1rem;
+  }
+`;
+
+const Logo = styled(motion(Link))`
+  color: white;
+  text-decoration: none;
+  font-size: 1.5rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: white;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s ease;
+  }
+
+  &:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+
+  svg {
+    animation: heartbeat 1.5s infinite;
+    filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.5));
+  }
+`;
+
+const NavLinks = styled.div<{ isOpen: boolean }>`
+  display: flex;
+  gap: 2rem;
+
+  @media (max-width: 768px) {
+    display: ${props => props.isOpen ? 'flex' : 'none'};
+    flex-direction: column;
+    width: 100%;
+    text-align: center;
+    padding: 1rem 0;
+    gap: 1rem;
+  }
+`;
+
+const NavLink = styled(Link)`
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: var(--accent-color);
+  }
+`;
+
+const MenuButton = styled.button`
+  display: none;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+
+  @media (max-width: 768px) {
+    display: block;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+  }
+`;
+
+export const Navbar = () => {
+    const [isOpen, setIsOpen] = useState(false);
+
+    return (
+        <Nav>
+            <NavContainer>
+                <Logo to="/">
+                    <FaHeart /> Per Te Amore
+                </Logo>
+                <MenuButton onClick={() => setIsOpen(!isOpen)}>
+                    ☰
+                </MenuButton>
+                <NavLinks isOpen={isOpen}>
+                    <NavLink to="/">Home</NavLink>
+                    <NavLink to="/quanto-ti-amo">Quanto Ti Amo</NavLink>
+                    <NavLink to="/quanto-sei-importante">Quanto Sei Importante</NavLink>
+                    <NavLink to="/cosa-significhi">Cosa Significhi Per Me</NavLink>
+                </NavLinks>
+            </NavContainer>
+        </Nav>
+    );
+};
