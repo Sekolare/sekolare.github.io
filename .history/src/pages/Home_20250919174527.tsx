@@ -45,8 +45,7 @@ const HomeContainer = styled.div`
 const PhotoFrame = styled(motion.div)`
   cursor: pointer;
   flex: 1;
-  width: 100%;
-  max-width: 600px;
+  max-width: 500px;
   border-radius: 20px;
   overflow: hidden;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
@@ -72,32 +71,18 @@ const PhotoFrame = styled(motion.div)`
 
 const TextContent = styled(motion.div)`
   flex: 1;
-  max-width: 600px;
-  width: 100%;
-  padding: 0 1rem;
-
+  padding: 2rem;
+  
   h2 {
-    font-size: 2.5rem;
     color: var(--primary-color);
     margin-bottom: 1rem;
-    font-weight: 600;
+    font-size: 2rem;
   }
 
   p {
-    font-size: 1.1rem;
-    line-height: 1.6;
+    font-size: 1.2rem;
+    line-height: 1.8;
     color: var(--text-color);
-    opacity: 0.9;
-  }
-
-  @media (max-width: 768px) {
-    h2 {
-      font-size: 2rem;
-    }
-
-    p {
-      font-size: 1rem;
-    }
   }
 `;
 

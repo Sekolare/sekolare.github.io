@@ -45,8 +45,7 @@ const HomeContainer = styled.div`
 const PhotoFrame = styled(motion.div)`
   cursor: pointer;
   flex: 1;
-  width: 100%;
-  max-width: 600px;
+  max-width: 500px;
   border-radius: 20px;
   overflow: hidden;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
