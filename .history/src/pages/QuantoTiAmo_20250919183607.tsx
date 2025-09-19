@@ -1,10 +1,52 @@
+import { useEffect, useState } from 'react';
 import styled from '@emotion/styled';
 import { motion } from 'framer-motion';
 import { FaHeart } from 'react-icons/fa';
 
+interface Heart {
+  id: number;
+  x: number;
+  y: number;
+  size: number;
+  rotation: number;
+  opacity: number;
+}
+
 const PageContainer = styled.div`
   text-align: center;
   padding: 2rem;
+`;
+
+const HeartExplosion = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+`;
+
+const Heart = styled.div<{ size: number; rotation: number }>`
+  position: absolute;
+  font-size: ${props => props.size}px;
+  transform: rotate(${props => props.rotation}deg);
+  animation: explode 2s ease-out forwards;
+  opacity: 0;
+
+  @keyframes explode {
+    0% {
+      transform: scale(0) rotate(0deg);
+      opacity: 1;
+    }
+    25% {
+      opacity: 1;
+    }
+    100% {
+      transform: scale(2) rotate(360deg);
+      opacity: 0;
+    }
+  }
 `;
 
 const Title = styled(motion.h1)`
@@ -56,16 +98,54 @@ const HeartGrid = styled.div`
 `;
 
 export const QuantoTiAmo = () => {
+  const [hearts, setHearts] = useState<Heart[]>([]);
+
+  useEffect(() => {
+    // Genera cuori casuali all'ingresso della pagina
+    const numberOfHearts = 30;
+    const newHearts = Array.from({ length: numberOfHearts }, (_, index) => ({
+      id: index,
+      x: Math.random() * 100,
+      y: Math.random() * 100,
+      size: Math.random() * 20 + 10,
+      rotation: Math.random() * 360,
+      opacity: 1
+    }));
+
+    setHearts(newHearts);
+
+    // Rimuovi i cuori dopo l'animazione
+    const timer = setTimeout(() => {
+      setHearts([]);
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <PageContainer>
-
+      <HeartExplosion>
+        {hearts.map((heart) => (
+          <Heart
+            key={heart.id}
+            style={{
+              left: `${heart.x}%`,
+              top: `${heart.y}%`,
+            }}
+            size={heart.size}
+            rotation={heart.rotation}
+          >
+            ❤️
+          </Heart>
+        ))}
+      </HeartExplosion>
+      
       <Title
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
         Quanto ti amo <FaHeart />
-      </Title>
 
       <LoveSection
         initial={{ opacity: 0, y: 50 }}

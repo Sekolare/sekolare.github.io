@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 import { motion } from 'framer-motion';
 import { FaHeart, FaInfinity, FaGem } from 'react-icons/fa';
+import { PageLoadHearts } from '../components/PageLoadHearts';
 
 const PageContainer = styled.div`
   text-align: center;
@@ -8,7 +9,7 @@ const PageContainer = styled.div`
 `;
 
 const Title = styled(motion.h1)`
-  color: var(--primary-color);<
+  color: var(--primary-color);
   font-size: 3rem;
   margin-bottom: 2rem;
   display: flex;
@@ -91,7 +92,7 @@ export const CosaSignifichi = () => {
     };
 
     return (
-        <PageContainer>
+        <PageContainer className="container">
             <Title
                 initial={{ opacity: 0, y: -50 }}
                 animate={{ opacity: 1, y: 0 }}

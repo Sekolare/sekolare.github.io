@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 import { motion } from 'framer-motion';
 import { FaHeart } from 'react-icons/fa';
+import { PageLoadHearts } from '../components/PageLoadHearts';
 
 const PageContainer = styled.div`
   text-align: center;
@@ -58,6 +59,7 @@ const HeartGrid = styled.div`
 export const QuantoTiAmo = () => {
   return (
     <PageContainer>
+      <PageLoadHearts />
 
       <Title
         initial={{ opacity: 0, y: 20 }}

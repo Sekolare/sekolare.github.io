@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 import { motion } from 'framer-motion';
 import { FaHeart, FaStar, FaSun } from 'react-icons/fa';
+import { PageLoadHearts } from '../components/PageLoadHearts';
 
 
 const PageContainer = styled.div`
@@ -84,6 +85,7 @@ export const QuantoSeiImportante = () => {
 
     return (
         <PageContainer className="container">
+            <PageLoadHearts />
             <Title
                 initial={{ opacity: 0, y: -50 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -134,10 +136,10 @@ export const QuantoSeiImportante = () => {
                 <ImportanceCard variants={itemVariants}>
                     <h2>
                         <FaStar />
-                        Il Mio Tutto
+                        Il Mio Destino
                     </h2>
                     <p>
-                        Sei la persona più belissimissima che conosca.
+                        Sei la persona che il destino ha scelto per me.
                         Ogni momento con te conferma che siamo fatti l'uno per l'altra.
                         Non potrei immaginare la mia vita senza di te.
                     </p>

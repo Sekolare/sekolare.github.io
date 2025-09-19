@@ -1,10 +1,52 @@
+import { useEffect, useState } from 'react';
 import styled from '@emotion/styled';
 import { motion } from 'framer-motion';
 import { FaHeart } from 'react-icons/fa';
 
+interface Heart {
+  id: number;
+  x: number;
+  y: number;
+  size: number;
+  rotation: number;
+  opacity: number;
+}
+
 const PageContainer = styled.div`
   text-align: center;
   padding: 2rem;
+`;
+
+const HeartExplosion = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+`;
+
+const Heart = styled.div<{ size: number; rotation: number }>`
+  position: absolute;
+  font-size: ${props => props.size}px;
+  transform: rotate(${props => props.rotation}deg);
+  animation: explode 2s ease-out forwards;
+  opacity: 0;
+
+  @keyframes explode {
+    0% {
+      transform: scale(0) rotate(0deg);
+      opacity: 1;
+    }
+    25% {
+      opacity: 1;
+    }
+    100% {
+      transform: scale(2) rotate(360deg);
+      opacity: 0;
+    }
+  }
 `;
 
 const Title = styled(motion.h1)`
@@ -57,14 +99,13 @@ const HeartGrid = styled.div`
 
 export const QuantoTiAmo = () => {
   return (
-    <PageContainer>
-
+    <PageContainer className="container">
       <Title
-        initial={{ opacity: 0, y: 20 }}
+        initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        Quanto ti amo <FaHeart />
+        Quanto Ti Amo <FaHeart />
       </Title>
 
       <LoveSection
